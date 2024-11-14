@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanggu Project Checklist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            overflow: hidden;
+            font-family: "Montserrat", sans-serif;
+            background-image: url(checklistBG.png);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            height: 90vh;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        .title {
+            font-size: 1.5em;
+            font-weight: bolder;
+            text-align: center;
+            color: #333;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+        .title h6 {
+            font-size: 1.0em;
+            text-align: center;
+            color: #333;
+            margin: 10px;
+        }
+        .title img {
+            padding: 10px;
+            border-radius: 100%;
+            background-image: url(iconBG.png);
+            background-position: right;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .project-list {
+            overflow-y: scroll;
+            flex-grow: 1;
+            padding-right: 10px;
+            margin-top: 10px;
+        }
+        .project-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .project-list::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+            border-radius: 4px;
+        }
+        .project-list::-webkit-scrollbar-track {
+            background-color: #f4f4f9;
+            border-radius: 4px;
+        }
+        .project {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .project:last-child {
+            border-bottom: none;
+        }
+        .project-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 100ms;
+        }
+        .project-title:hover {
+            font-weight: bolder;
+            font-size: 1.35em;
+        }
+        .project-indicator {
+            position: relative !important;
+            bottom: -50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            margin-top: auto;
+            margin-bottom: auto;
+            opacity: 1;
+            visibility: visible;
+            transition: 0.5s;
+        }
+        .project-description {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.5s;
+            padding: 0 10px;
+            color: #666;
+        }
+        .project-checkbox:checked + .project-description {
+            max-height: 1000px;
+            padding: 10px 10px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .progress {
+            height: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+        .status-tag {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: white;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .logo-container {
+            position: relative;
+            height: 20px;
+            width: 20px;
+        }
+        .accomplished { background-color: #4CAF50; }
+        .ongoing { background-color: #FFA500; }
+        .canceled { background-color: #f44336; }
+    </style>
+    <script>
+        function toggleIndicator(checkbox) {
+            const project = checkbox.closest('.project');
+            const indicator = project.querySelector('.project-indicator');
+            if (checkbox.checked) {
+                indicator.style.opacity = '0';
+                indicator.style.visibility = 'hidden';
+                indicator.style.height = '0px';
+                indicator.style.width = '0px';
+            } else {
+                indicator.style.opacity = '1';
+                indicator.style.visibility = 'visible';
+                indicator.style.height = '20px';
+                indicator.style.width = '20px';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <img src="smLogo.svg" height="75vh" width="75vw" alt="Sangguniang Mag-aaral Logo">
+            <h6>S.Y. 2024-2025 Project Checklist</h6>
+        </div>
+        
+        <div class="project-list">
+            <!-- Project 1 -->
+            <div class="project">
+                <div class="project-title">
+                    <label for="project-1">CLClean</label>
+                    <div class="logo-container">
+                        <div class="project-indicator ongoing"></div>
+                    </div>
+                </div>
+                <input type="checkbox" id="project-1" class="project-checkbox" hidden onclick="toggleIndicator(this)">
+                <div class="project-description">
+                    <p>A project to improve Pisay's waste management in coordination with the admin and to promote recycling practices in the school for an overall cleaner environment for our scholars to study.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%; background-color: #3b8fe9;">60%</div>
+                    </div>
+                    <span class="status-tag ongoing">Ongoing</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project">
+                <div class="project-title">
+                    <label for="project-2">Sanggulatan</label>
+                    <div class="logo-container">
+                        <div class="project-indicator accomplished"></div>
+                    </div>
+                </div>
+                <input type="checkbox" id="project-2" class="project-checkbox" hidden onclick="toggleIndicator(this)">
+                <div class="project-description">
+                    <p>A costume contest event running alongside the 2024 Costume Day to promote creativity and self-expression among PSHS scholars.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%; background-color: #4CAF50;">100%</div>
+                    </div>
+                    <span class="status-tag accomplished">Accomplished</span>
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-title">
+                    <label for="project-3">Sanggu Fight Club</label>
+                    <div class="logo-container">
+                        <div class="project-indicator canceled"></div>
+                    </div>
+                </div>
+                <input type="checkbox" id="project-3" class="project-checkbox" hidden onclick="toggleIndicator(this)">
+                <div class="project-description">
+                    <p>I spoke, "Give me a project name that would get canceled...", and thus answered Ice Vega.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 20%; background-color: #f44336;">20%</div>
+                    </div>
+                    <span class="status-tag canceled">Canceled</span>
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-title">
+                    <label for="project-4">Sanggu Store</label>
+                    <div class="logo-container">
+                        <div class="project-indicator ongoing"></div>
+                    </div>
+                </div>
+                <input type="checkbox" id="project-4" class="project-checkbox" hidden onclick="toggleIndicator(this)">
+                <div class="project-description">
+                    <p>A fundraising method for the Sangguniang Mag-aaral that is also used to fund existing and new projects and allow the Sangguniang Mag-aaral to extend its service to the community through outreach.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%; background-color: #3b8fe9;">75%</div>
+                    </div>
+                    <span class="status-tag ongoing">Ongoing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
